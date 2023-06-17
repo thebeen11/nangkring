@@ -4,6 +4,7 @@ import { getFirestore } from "firebase/firestore";
 //your firebase configuration goes here
 //https://firebase.google.com/docs/web/learn-more?authuser=0&hl=en#modular-version
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDSFntKVnOhjHzB3tuW5zGy2PgRV9LptBI",
   authDomain: "yuks-a5d95.firebaseapp.com",
@@ -17,3 +18,4 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 
 export const firestoreDb = getFirestore(firebaseApp);
+
