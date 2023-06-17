@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex justify-center py-28">
-    <div class="w-full md:w-80 flex flex-col space-y-6 justify-center">
+    <div class="w-full px-10 md:px-0 md:w-80 flex flex-col space-y-6 justify-center">
       <p class="font-semibold text-center">
         Sign in to <span class="font-bold">NANGKRING</span>
       </p>
