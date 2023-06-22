@@ -1,2 +1,3 @@
+import { isLogin } from './store';
 
-export const useIsLogin = () => useState('isLogin', () =>  false)
+// export const useIsLogin = () => useState('isLogin', () =>  isLogin)

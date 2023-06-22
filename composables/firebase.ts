@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 //your firebase configuration goes here
 //https://firebase.google.com/docs/web/learn-more?authuser=0&hl=en#modular-version
@@ -19,3 +20,4 @@ export const firebaseApp = initializeApp(firebaseConfig);
 
 export const firestoreDb = getFirestore(firebaseApp);
 
+export const firebaseStorage = getStorage(firebaseApp)

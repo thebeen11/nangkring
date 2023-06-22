@@ -4,7 +4,6 @@
     <div class="w-full grid md:grid-cols-4 grid-cols-1 md:gap-6 justify-center">
         <CoffeShopCard v-for="a in data.coffeShops" :shop="a"/>
     </div>
-   
   </div>
 </template>
 
@@ -14,15 +13,26 @@ import { CoffeShop } from "../model/CoffeShop";
 
 interface Data {
   coffeShops: CoffeShop[];
+  image: File
 }
 
 const data: Data = reactive({
   coffeShops: [],
+  image: {} as File
 });
 
+const getImage = (event:any) => {
+  if (event.target.files && event.target.files[0]) {
+        const fileType = event.target.files[0].type.toString();
+        
+        if(fileType.indexOf('image') != 0){
+            alert('Please Choose an Image'); return;
+        }
+        data.image = event.target.files[0];
+      }
+}
 
 onMounted(() => {
-    // addData()
   getData();
 });
 
@@ -35,19 +45,21 @@ const getData = async () => {
 };
 
 const addData = async () => {
-    await setDoc(doc(firestoreDb, "coffeshop", generateId()), {
+  let id = generateId()
+    await setDoc(doc(firestoreDb, "coffeshop", id), {
   "address": "jl. masing-masing aja",
   "city": "jakarta barat",
   "district": "duri kelapa",
   "map": "https://goo.gl/maps/U9HjyE6KcqQ5csqV8",
   "maxPrice": 85000,
   "minPrice": 25000,
-  "name": "KOPI KITA",
-  "photos": [
-    "Screenshot_2023-06-16_at_09.14.06_mhnwp2.png",
-  ],
+  "name": "KOPI YUYUYUYU",
+  "photos": "",
   "province": "DKI jakarta",
   "subDistrict": "kebon jeruk"
 });
+
+updateFotoProfile(data.image as File, id as string);
 };
+
 </script>

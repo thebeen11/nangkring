@@ -4,9 +4,8 @@
       <p class="font-semibold text-center">
         Sign in to <span class="font-bold">NANGKRING</span>
       </p>
-
       <button
-        class="py-2 px-4 rounded-xl font-semibold border-slate-500 border-4 flex justify-center"
+        class="py-2 px-4 rounded-xl font-semibold border-slate-500 border-4 flex justify-center" @click="loginWithGoogle"
       >
         <span class="flex items-center space-x-2"
           ><Icon name="logos:google-icon" />
@@ -41,13 +40,13 @@
       >
         Sign In
       </button>
-      <p class="text-slate-500 hover:text-slate-400 text-center cursor-pointer">
+      <p class="text-slate-500 hover:text-slate-400 text-center cursor-pointer" @click="resetPass()">
         Reset Password
       </p>
       <p class="text-center">
         No account?
         <span
-          class="text-slate-500 hover:text-slate-400 text-center cursor-pointer"
+          class="text-slate-500 hover:text-slate-400 text-center cursor-pointer" @click="onLogoutAction"
           >Create one</span
         >
       </p>
@@ -57,18 +56,20 @@
 
 <script setup lang="ts">
 import { onStartTyping } from "@vueuse/core";
+import { resetPassword, loginWithGoogle, onLogoutAction } from "~/composables/authority";
 
-const isLogin = useIsLogin()
 
 definePageMeta({
   layout: "custom",
 });
 const email = ref<HTMLInputElement | null>(null);
 
+
 const data = reactive({
     email: '',
     password: '',
 })
+
 
 onStartTyping(() => {
   if (email.value) {
@@ -79,10 +80,18 @@ onStartTyping(() => {
 const signIn = () =>{
     try {
      signInUser(data.email, data.password)
-       
     } catch (error:any) {
         console.log(error);
-        
     }
 }
+
+const resetPass = () => {
+  try {
+    resetPassword(data.email)
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
+
 </script>

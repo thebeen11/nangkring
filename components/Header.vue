@@ -4,11 +4,12 @@
         <div id="logo">
         <h1 class="font-bold">NANGKRING</h1>
         </div>
+        {{ isLogin }}
         <div v-if="!isLogin" class=" border rounded-full px-6 py-2 cursor-pointer" @click="toLogin()">
             login
         </div>
         <div v-else class=" border rounded-full px-6 py-2 cursor-pointer">
-        profile
+        {{ userLogin.email }}
         </div>
        </div>
         
@@ -17,8 +18,8 @@
 
 <script lang="ts" setup>
 
+
 const router = useRouter()
-const isLogin = useIsLogin()
 
 const toLogin = () => {
     router.push('login')
